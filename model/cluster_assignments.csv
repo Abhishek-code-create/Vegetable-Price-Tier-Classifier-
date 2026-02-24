@@ -1,0 +1,133 @@
+Commodity,mean_price,Cluster,ClusterName
+Amla,83.36215311004786,0,Budget
+Apple(Jholey),126.67521834862384,0,Budget
+Arum,44.55334830543079,0,Budget
+Bamboo Shoot,100.66310438729198,0,Budget
+Bakula,69.87366812227074,0,Budget
+Bitter Gourd,65.91842450765864,0,Budget
+Bauhania flower,137.5592076502732,0,Budget
+Barela,46.84092407298411,0,Budget
+Brd Leaf Mustard,52.26860294117647,0,Budget
+Brinjal Long,38.39509689326361,0,Budget
+Brinjal Round,41.839820662768034,0,Budget
+Bottle Gourd,42.11917122040072,0,Budget
+Brocauli,75.94568659127624,0,Budget
+Cabbage(Terai),24.939105504587157,0,Budget
+Cabbage(Local),27.760089038992938,0,Budget
+Cabbage,25.400409482758622,0,Budget
+Cauli Terai,25.60134065934066,0,Budget
+Chilli Green,63.911260249013054,0,Budget
+Chilli Green(Machhe),72.84657216494845,0,Budget
+Capsicum,76.67251564828614,0,Budget
+Carrot(Local),67.14306999098828,0,Budget
+Carrot(Terai),53.51030855539972,0,Budget
+Cauli Local,49.317643217571984,0,Budget
+Cauli Local(Jyapu),55.10020025031289,0,Budget
+Christophine,31.02043557168784,0,Budget
+Chilli Green(Bullet),78.27358490566037,0,Budget
+Cress Leaf,67.54224195710455,0,Budget
+Cucumber(Hybrid),37.03182944606414,0,Budget
+Cowpea(Short),69.1609132947977,0,Budget
+Cow pea(Long),64.50596850970341,0,Budget
+Coriander Green,118.85404432132964,0,Budget
+Clive Green,98.5229874572406,0,Budget
+Knolkhol,52.55124862486249,0,Budget
+Jack Fruit,54.248293413173656,0,Budget
+Kinnow,95.07086799276674,0,Budget
+Green Peas,76.0476907630522,0,Budget
+Garlic Dry Nepali,150.46877557648585,0,Budget
+French Bean(Rajma),98.88391711229946,0,Budget
+Cucumber(Local),59.02820465686275,0,Budget
+Fennel Leaf,66.85812144212524,0,Budget
+Fenugreek Leaf,63.97664518574678,0,Budget
+Guava,87.67820601851852,0,Budget
+Garlic Green,100.83193399136336,0,Budget
+Ginger,92.46571642685852,0,Budget
+French Bean(Local),60.76613888888889,0,Budget
+French Bean(Hybrid),74.10131522516082,0,Budget
+Pear(Local),95.8796599423631,0,Budget
+Papaya(Nepali),66.62189189189189,0,Budget
+Neuro,77.90838478500551,0,Budget
+Okara,70.7976203789997,0,Budget
+Onion Dry (Chinese),85.24257425742574,0,Budget
+Onion Dry (Indian),44.05120418848168,0,Budget
+Onion Green,76.19766820276497,0,Budget
+Mushroom(Kanya),156.49638473282442,0,Budget
+Musk Melon,38.75,0,Budget
+Mustard Leaf,47.26776,0,Budget
+Mango(Dushari),138.1317924528302,0,Budget
+Mango(Maldah),100.65814167433302,0,Budget
+Mombin,48.753849926434526,0,Budget
+Mango(Chousa),148.68121739130436,0,Budget
+Litchi(Local),116.06814241486069,0,Budget
+Mango(Calcutte),132.51805755395685,0,Budget
+Lettuce,72.4750557857826,0,Budget
+Lemon,45.14629225736096,0,Budget
+Tomato Small(Terai),36.08471666666667,0,Budget
+Sweet Lime,90.125,0,Budget
+Sweet Orange,122.27808180088776,0,Budget
+Sweet Potato,59.36689275893676,0,Budget
+Tamarind,121.78192041522492,0,Budget
+Sword Bean,71.3984380032206,0,Budget
+Tofu,85.71742624924745,0,Budget
+Tomato Big(Indian),63.07244176013804,0,Budget
+Smooth Gourd,50.134800894854585,0,Budget
+Snake Gourd,35.05314578005115,0,Budget
+Soyabean Green,74.44039528432731,0,Budget
+Spinach Leaf,65.74906290115533,0,Budget
+Squash(Long),32.74548936170213,0,Budget
+Sponge Gourd,45.921727192205495,0,Budget
+Squash(Round),41.861681222707425,0,Budget
+Sugarbeet,71.58693997524752,0,Budget
+Tree Tomato,100.8683,0,Budget
+Tomato Big(Nepali),50.80600668896321,0,Budget
+Pointed Gourd(Terai),76.25288633461047,0,Budget
+Pointed Gourd(Local),59.20341776798825,0,Budget
+Potato Red,36.58462957270212,0,Budget
+Orange(Indian),122.27307458143075,0,Budget
+Orange(Nepali),87.12728782287823,0,Budget
+Papaya(Indian),94.94866988283944,0,Budget
+Red Cabbbage,92.36196774193549,0,Budget
+Raddish White(Local),25.708206751054853,0,Budget
+Raddish White(Hybrid),33.093015551048005,0,Budget
+Raddish Red,40.16931185944363,0,Budget
+Pumpkin,31.831830518697227,0,Budget
+Potato White,28.535561115082203,0,Budget
+Potato Red(Mude),47.1821327014218,0,Budget
+Potato Red(Indian),34.00082018927445,0,Budget
+Turnip,60.56064772727272,0,Budget
+Tomato Small(Tunnel),43.13430047694753,0,Budget
+Tomato Small(Indian),39.09950413223141,0,Budget
+Tomato Small(Local),36.47227664818238,0,Budget
+Yam,47.15578332034294,0,Budget
+Water Melon(Green),48.88737899543379,0,Budget
+Water Melon(Dotted),33.19,0,Budget
+Turnip A,60.65741191144372,0,Budget
+Fish Fresh(Bachuwa),238.87935277382647,1,Mid-Range
+Clive Dry,171.9410623353819,1,Mid-Range
+Drumstick,150.65378096479793,1,Mid-Range
+Fish Fresh,233.69609856262835,1,Mid-Range
+Kiwi,410.28665127020787,1,Mid-Range
+Gundruk,222.67277357870523,1,Mid-Range
+Fish Fresh(Mungari),257.8915412979351,1,Mid-Range
+Fish Fresh(Rahu),301.2653687315634,1,Mid-Range
+Asparagus,358.1521949828962,1,Mid-Range
+Apple(Fuji),278.8643451864701,1,Mid-Range
+Grapes(Green),159.17480733944953,1,Mid-Range
+Grapes(Black),303.0550409165303,1,Mid-Range
+Garlic Dry Chinese,193.80160912638848,1,Mid-Range
+Fish Fresh(Chhadi),230.6570592433976,1,Mid-Range
+Mint,167.9491641987496,1,Mid-Range
+Mushroom(Button),342.7169935576235,1,Mid-Range
+Pomegranate,235.80586153846156,1,Mid-Range
+Pear(Chinese),237.46475000000004,1,Mid-Range
+Parseley,175.8303230437904,1,Mid-Range
+Lime,294.072063202674,1,Mid-Range
+Avocado,396.91003044140035,1,Mid-Range
+Celery,153.0853517334231,1,Mid-Range
+Chilli Dry,284.1936890606421,1,Mid-Range
+Chilli Green(Akbare),228.18554707379135,1,Mid-Range
+Strawberry,437.99164750957857,1,Mid-Range
+Sarifa,202.74024539877303,1,Mid-Range
+Litchi(Indian),211.78477611940295,1,Mid-Range
+Mandarin,232.17408585055645,1,Mid-Range

@@ -1,0 +1,160 @@
+{
+  "best_model": "KNN (k=1)",
+  "feature_cols": [
+    "CommodityEncoded",
+    "Year",
+    "Month",
+    "DayOfYear",
+    "WeekOfYear",
+    "Quarter",
+    "MonthSin",
+    "MonthCos",
+    "DaySin",
+    "DayCos",
+    "Lag7",
+    "Lag30",
+    "Roll7Mean",
+    "PriceRange"
+  ],
+  "tier_order": [
+    "Low",
+    "Medium",
+    "High",
+    "Very High"
+  ],
+  "commodities": [
+    "Bamboo Shoot",
+    "Bottle Gourd",
+    "Brd Leaf Mustard",
+    "Brinjal Long",
+    "Cabbage(Local)",
+    "Capsicum",
+    "Carrot(Local)",
+    "Cauli Local",
+    "Chilli Dry",
+    "Chilli Green",
+    "Coriander Green",
+    "Cucumber(Local)",
+    "French Bean(Local)",
+    "Garlic Dry Chinese",
+    "Garlic Green",
+    "Ginger",
+    "Lime",
+    "Mushroom(Kanya)",
+    "Okara",
+    "Onion Dry (Indian)",
+    "Onion Green",
+    "Pomegranate",
+    "Potato Red",
+    "Pumpkin",
+    "Raddish White(Local)",
+    "Sugarbeet",
+    "Tamarind",
+    "Tofu",
+    "Tomato Small(Local)",
+    "Water Melon(Green)"
+  ],
+  "dataset_summary": {
+    "total_records": 97820,
+    "commodities": 30,
+    "features": 14,
+    "date_range": "2013-07-25 \u2192 2023-09-28",
+    "class_distribution": {
+      "Low": 28121,
+      "Medium": 25294,
+      "High": 22805,
+      "Very High": 21600
+    },
+    "price_stats": {
+      "count": 97820.0,
+      "mean": 92.55,
+      "std": 82.44,
+      "min": 11.0,
+      "25%": 41.5,
+      "50%": 65.0,
+      "75%": 112.5,
+      "max": 575.0
+    }
+  },
+  "all_results": [
+    {
+      "Model": "KNN (k=1)",
+      "Accuracy": 0.8449,
+      "Precision": 0.8451,
+      "Recall": 0.8449,
+      "F1 Score": 0.845,
+      "CV F1 Mean": 0.8372,
+      "CV F1 Std": "\u00b10.0021"
+    },
+    {
+      "Model": "Decision Tree",
+      "Accuracy": 0.6945,
+      "Precision": 0.7069,
+      "Recall": 0.6945,
+      "F1 Score": 0.698,
+      "CV F1 Mean": 0.7002,
+      "CV F1 Std": "\u00b10.0088"
+    },
+    {
+      "Model": "Naive Bayes",
+      "Accuracy": 0.3402,
+      "Precision": 0.3263,
+      "Recall": 0.3402,
+      "F1 Score": 0.2757,
+      "CV F1 Mean": 0.2736,
+      "CV F1 Std": "\u00b10.002"
+    },
+    {
+      "Model": "Random Forest",
+      "Accuracy": 0.7712,
+      "Precision": 0.7711,
+      "Recall": 0.7712,
+      "F1 Score": 0.7697,
+      "CV F1 Mean": 0.7667,
+      "CV F1 Std": "\u00b10.0036"
+    }
+  ],
+  "knn_best_k": 1,
+  "knn_search": [
+    {
+      "k": 1,
+      "f1": 0.8477,
+      "accuracy": 0.8477
+    },
+    {
+      "k": 3,
+      "f1": 0.8384,
+      "accuracy": 0.8383
+    },
+    {
+      "k": 5,
+      "f1": 0.8265,
+      "accuracy": 0.8268
+    },
+    {
+      "k": 7,
+      "f1": 0.815,
+      "accuracy": 0.8154
+    },
+    {
+      "k": 9,
+      "f1": 0.8005,
+      "accuracy": 0.8011
+    },
+    {
+      "k": 11,
+      "f1": 0.7889,
+      "accuracy": 0.7897
+    },
+    {
+      "k": 15,
+      "f1": 0.7686,
+      "accuracy": 0.7696
+    },
+    {
+      "k": 21,
+      "f1": 0.7445,
+      "accuracy": 0.7457
+    }
+  ]
+}
