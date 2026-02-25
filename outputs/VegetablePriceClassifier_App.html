@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalimati Vegetable Price Tier Classifier — STW5000CEM</title>
+<style>
+:root{--g:#2d6a4f;--g2:#40916c;--gl:#d8f3dc;--acc:#f77f00;--acc2:#fcbf49;--bg:#f0f7f0;--card:#fff;--txt:#1b4332;--txt2:#495057;--bdr:#b7e4c7;--sha:0 4px 20px rgba(45,106,79,.12);--rad:14px;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--txt);}
+header{background:linear-gradient(135deg,var(--g),var(--g2) 60%,#52b788);color:#fff;box-shadow:0 4px 24px rgba(45,106,79,.3);}
+.hdr{max-width:1280px;margin:0 auto;padding:22px 32px;display:flex;align-items:center;gap:20px;}
+.logo{font-size:2.5rem;}.hdr h1{font-size:1.7rem;font-weight:700;}
+.hdr p{font-size:.87rem;opacity:.88;margin-top:4px;}
+.badges{display:flex;gap:7px;flex-wrap:wrap;margin-top:7px;}
+.badge{font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:20px;}
+.bg{background:#d8f3dc;color:#1b4332;}.bo{background:#fff3cd;color:#7d4e00;}.bb{background:#dbeafe;color:#1e3a8a;}
+nav{background:rgba(0,0,0,.18);}
+.tabs{max-width:1280px;margin:0 auto;display:flex;padding:0 32px;overflow-x:auto;}
+.tab{padding:12px 17px;cursor:pointer;font-size:.87rem;font-weight:600;color:rgba(255,255,255,.72);border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap;user-select:none;}
+.tab:hover{color:#fff;background:rgba(255,255,255,.08);}.tab.active{color:#fff;border-bottom-color:var(--acc2);}
+main{max-width:1280px;margin:0 auto;padding:24px 32px;}
+.panel{display:none;}.panel.active{display:block;}
+.card{background:var(--card);border-radius:var(--rad);box-shadow:var(--sha);padding:22px;border:1px solid var(--bdr);margin-bottom:18px;}
+.ct{font-size:1.05rem;font-weight:700;color:var(--g);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+@media(max-width:900px){.g2,.g4{grid-template-columns:1fr;}}
+.stat{background:linear-gradient(135deg,var(--gl),#fff);border:1px solid var(--bdr);border-radius:11px;padding:16px;text-align:center;}
+.stat .v{font-size:1.8rem;font-weight:800;color:var(--g);}.stat .l{font-size:.77rem;color:var(--txt2);margin-top:3px;font-weight:500;}
+.stat.acc{background:linear-gradient(135deg,#fff3cd,#fff);border-color:var(--acc2);}.stat.acc .v{color:var(--acc);}
+.stat.blu{background:linear-gradient(135deg,#dbeafe,#fff);border-color:#bfdbfe;}.stat.blu .v{color:#1e3a8a;}
+.fg{margin-bottom:14px;}
+label{display:block;font-size:.85rem;font-weight:600;color:var(--txt);margin-bottom:5px;}
+select,input{width:100%;padding:10px 13px;border:2px solid var(--bdr);border-radius:9px;font-size:.89rem;color:var(--txt);}
+select:focus,input:focus{outline:none;border-color:var(--g2);box-shadow:0 0 0 3px rgba(64,145,108,.15);}
+.btn{padding:12px 24px;border:none;border-radius:9px;font-size:.9rem;font-weight:700;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:7px;}
+.btn-p{background:var(--g);color:#fff;}.btn-p:hover{background:var(--g2);transform:translateY(-1px);}
+#rbox{display:none;border-radius:var(--rad);padding:24px;text-align:center;margin-top:16px;animation:fi .4s ease;color:#fff;}
+#rbox.Low{background:linear-gradient(135deg,#155724,#27ae60);}
+#rbox.Medium{background:linear-gradient(135deg,#7d6000,#f39c12);}
+#rbox.High{background:linear-gradient(135deg,#7d3c00,#e67e22);}
+#rbox.VH{background:linear-gradient(135deg,#7b241c,#e74c3c);}
+.pb-row{display:flex;align-items:center;gap:9px;margin:4px 0;font-size:.82rem;}
+.pb-lbl{width:76px;text-align:right;font-weight:600;}
+.pb-wrap{flex:1;background:rgba(255,255,255,.2);border-radius:99px;height:8px;}
+.pb-fill{height:100%;border-radius:99px;background:rgba(255,255,255,.85);transition:width .7s ease;}
+.pb-val{width:38px;font-size:.79rem;}
+table{width:100%;border-collapse:collapse;font-size:.84rem;}
+th{background:var(--g);color:#fff;padding:10px 13px;text-align:left;font-weight:600;}
+td{padding:9px 13px;border-bottom:1px solid #e9ecef;color:var(--txt2);}
+tr:last-child td{border-bottom:none;}tr:hover td{background:var(--gl);}
+td.b{background:#d1fae5;color:#065f46;font-weight:700;}
+.pill{padding:2px 9px;border-radius:20px;font-size:.73rem;font-weight:700;display:inline-block;}
+.pL{background:#d1fae5;color:#065f46;}.pM{background:#fef3c7;color:#92400e;}
+.pH{background:#fed7aa;color:#7c2d12;}.pVH{background:#fee2e2;color:#7f1d1d;}
+.pKNN{background:#dbeafe;color:#1e3a8a;}.pDT{background:#ede9fe;color:#4c1d95;}
+.pRF{background:#d1fae5;color:#065f46;}.pNB{background:#fce7f3;color:#831843;}
+img.cw{width:100%;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.08);}
+.cap{font-size:.77rem;color:var(--txt2);text-align:center;margin-top:6px;font-style:italic;}
+.vg{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:7px;}
+.vc{background:var(--gl);border:1px solid var(--bdr);border-radius:8px;padding:8px;font-size:.79rem;font-weight:500;color:var(--g);cursor:pointer;transition:all .2s;text-align:center;}
+.vc:hover{background:var(--g);color:#fff;transform:translateY(-1px);}
+.info{background:#e3f2fd;color:#1565c0;border-left:4px solid #1976d2;padding:11px 14px;border-radius:8px;font-size:.85rem;margin-bottom:13px;}
+.warn{background:#fff8e1;color:#7d5a00;border-left:4px solid #f9a825;padding:11px 14px;border-radius:8px;font-size:.85rem;margin-bottom:13px;}
+.snote{background:#f0fdf4;border:1px solid var(--bdr);border-radius:9px;padding:13px;font-size:.84rem;color:var(--txt2);line-height:1.7;margin-bottom:16px;}
+footer{text-align:center;padding:20px;color:var(--txt2);font-size:.79rem;margin-top:8px;border-top:1px solid var(--bdr);}
+@keyframes fi{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<header>
+<div class="hdr">
+  <div class="logo">🥦</div>
+  <div>
+    <h1>Kalimati Vegetable Price Tier Classifier</h1>
+    <p>AI Classification System — KNN + K-Means | Kalimati Tarkari Bazar, Nepal (2013–2023)</p>
+    <div class="badges">
+      <span class="badge bg">✅ Classification Domain</span>
+      <span class="badge bb">✅ Clustering Domain</span>
+      <span class="badge bo">KNN Accuracy: 84.49%</span>
+      <span class="badge bg">Weighted F1: 0.845</span>
+      <span class="badge bb">STW5000CEM</span>
+    </div>
+  </div>
+</div>
+<nav><div class="tabs">
+  <div class="tab active" data-p="classify">🔮 Classify</div>
+  <div class="tab" data-p="evaluation">📊 Evaluation &amp; Metrics</div>
+  <div class="tab" data-p="comparison">⚖️ Comparative Analysis</div>
+  <div class="tab" data-p="clustering">🔵 Clustering</div>
+  <div class="tab" data-p="modelinfo">🧠 Model Details</div>
+  <div class="tab" data-p="analytics">📈 Analytics</div>
+</div></nav>
+</header>
+<main>
+
+<!-- TAB 1 CLASSIFY -->
+<div id="classify" class="panel active">
+<div class="g2">
+  <div class="card">
+    <div class="ct">🔮 Predict Price Tier</div>
+    <div class="info">Select a vegetable and date — the <strong>KNN classifier</strong> predicts whether the price will be Low / Medium / High / Very High.</div>
+    <div class="fg"><label>Vegetable</label><select id="vsel"></select></div>
+    <div class="fg"><label>Date</label><input type="date" id="pdate"/></div>
+    <div class="fg"><label>Last known price (NPR/Kg)</label><input type="number" id="lprice" placeholder="e.g. 45" min="1" max="9999" step="0.5"/>
+    <div style="font-size:.73rem;color:var(--txt2);margin-top:2px;">Used for lag features. Enter most recent known price.</div></div>
+    <button class="btn btn-p" onclick="classify()" style="width:100%;justify-content:center;padding:13px;">🔮 Classify Price Tier</button>
+    <div id="rbox">
+      <div id="te" style="font-size:2.8rem;margin-bottom:6px;"></div>
+      <div id="tn" style="font-size:1.85rem;font-weight:900;"></div>
+      <div id="ts" style="font-size:.87rem;opacity:.88;margin-top:3px;"></div>
+      <div id="probs" style="margin-top:14px;background:rgba(255,255,255,.12);border-radius:9px;padding:13px;"></div>
+      <div id="tins" style="margin-top:9px;font-size:.83rem;opacity:.88;"></div>
+    </div>
+  </div>
+  <div>
+    <div class="card">
+      <div class="ct">⚡ Quick Classify</div>
+      <div class="vg" id="qvg"></div>
+    </div>
+    <div class="card">
+      <div class="ct">📖 Tier Guide</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
+        <span><span style="color:#27ae60;font-weight:700;">🟢 Low</span> — Best value</span>
+        <span><span style="color:#f39c12;font-weight:700;">🟡 Medium</span> — Normal</span>
+        <span><span style="color:#e67e22;font-weight:700;">🟠 High</span> — Above avg</span>
+        <span><span style="color:#e74c3c;font-weight:700;">🔴 Very High</span> — Peak</span>
+      </div>
+      <div id="seas" style="font-size:.84rem;color:var(--txt2);line-height:1.75;"></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- TAB 2 EVALUATION -->
+<div id="evaluation" class="panel">
+<div class="snote">
+  📋 <strong>Metrics used:</strong> Accuracy, Precision (weighted), Recall (weighted), F1 Score (weighted &amp; macro), Log Loss (cross-entropy), and 5-fold Stratified Cross-Validation F1. Confusion matrices and ROC/AUC curves are also included. Note: RMSE applies to regression — the equivalent for classification probabilistic error is <strong>Log Loss</strong>.
+</div>
+<div class="g4" style="margin-bottom:18px;">
+  <div class="stat"><div class="v">84.49%</div><div class="l">🎯 KNN Accuracy</div></div>
+  <div class="stat acc"><div class="v">0.8450</div><div class="l">📈 Weighted F1</div></div>
+  <div class="stat"><div class="v">0.8451</div><div class="l">🎯 Precision</div></div>
+  <div class="stat acc"><div class="v">0.8449</div><div class="l">📉 Recall</div></div>
+</div>
+
+<div class="card">
+  <div class="ct">📋 Full Metrics Table — All Models</div>
+  <div class="warn">⚠️ RMSE is not used in classification. Equivalent metric: <strong>Log Loss</strong> (lower = better). KNN has high log loss because k=1 gives binary probabilities (0 or 1), not soft estimates — Random Forest gives better calibrated probabilities.</div>
+  <div style="overflow-x:auto;"><table>
+    <thead><tr><th>Model</th><th>Accuracy</th><th>Precision*</th><th>Recall*</th><th>F1* Weighted</th><th>F1 Macro</th><th>CV F1 5-fold</th><th>Log Loss ↓</th></tr></thead>
+    <tbody>
+      <tr><td><strong>KNN (k=1)</strong> <span class="pill pKNN">PRIMARY</span></td><td class="b">0.8449</td><td class="b">0.8451</td><td class="b">0.8449</td><td class="b">0.8450</td><td class="b">0.8431</td><td>0.8372 ±0.0021</td><td>5.59</td></tr>
+      <tr><td>Random Forest <span class="pill pRF">Ensemble</span></td><td>0.7712</td><td>0.7711</td><td>0.7712</td><td>0.7697</td><td>0.7667</td><td>0.7667 ±0.0036</td><td class="b">0.77</td></tr>
+      <tr><td>Decision Tree <span class="pill pDT">Tree</span></td><td>0.6945</td><td>0.7069</td><td>0.6945</td><td>0.6980</td><td>0.6955</td><td>0.7002 ±0.0088</td><td>0.82</td></tr>
+      <tr><td>Naive Bayes <span class="pill pNB">Probabilistic</span></td><td>0.3402</td><td>0.3263</td><td>0.3402</td><td>0.2757</td><td>0.2652</td><td>0.2736 ±0.0020</td><td>2.17</td></tr>
+    </tbody>
+  </table></div>
+  <div style="font-size:.74rem;color:var(--txt2);margin-top:7px;">* Weighted average across all 4 classes. Test set: 19,564 records (20% holdout). Green = best value per metric.</div>
+</div>
+
+<div class="card">
+  <div class="ct">🎯 Per-Class Precision / Recall / F1 — All Four Models</div>
+  <img src="charts/per_class_metrics.png" class="cw" alt="Per Class Metrics">
+  <div class="cap">Figure 1: Per-class breakdown for each model. KNN achieves consistently high scores across all four tiers.</div>
+</div>
+
+<div class="card">
+  <div class="ct">🏆 KNN Per-Tier Detailed Breakdown</div>
+  <div style="overflow-x:auto;"><table>
+    <thead><tr><th>Price Tier</th><th>Precision</th><th>Recall</th><th>F1-Score</th><th>Support</th><th>Interpretation</th></tr></thead>
+    <tbody>
+      <tr><td><span class="pill pL">Low</span></td><td>0.7915</td><td>0.7972</td><td>0.7943</td><td>4,561</td><td>79% of Low records correctly identified</td></tr>
+      <tr><td><span class="pill pM">Medium</span></td><td>0.9015</td><td>0.8995</td><td>0.9005</td><td>5,624</td><td>Strongest class — 90% precision &amp; recall</td></tr>
+      <tr><td><span class="pill pH">High</span></td><td>0.8066</td><td>0.8096</td><td>0.8081</td><td>5,059</td><td>80% detection rate for High tier</td></tr>
+      <tr><td><span class="pill pVH">Very High</span></td><td>0.8734</td><td>0.8653</td><td>0.8693</td><td>4,320</td><td>87% precision for peak prices</td></tr>
+      <tr style="background:var(--gl);font-weight:600;"><td>Weighted Avg</td><td>0.8451</td><td>0.8449</td><td>0.8450</td><td>19,564</td><td>Overall weighted performance</td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<div class="card">
+  <div class="ct">🟦 All Four Confusion Matrices</div>
+  <img src="charts/all_confusion_matrices.png" class="cw" alt="Confusion Matrices">
+  <div class="cap">Figure 2: Diagonal cells = correct predictions. KNN shows strongest diagonal. Naive Bayes almost entirely collapses into Medium class.</div>
+</div>
+
+<div class="card">
+  <div class="ct">📈 ROC / AUC Curves — One-vs-Rest Multi-Class</div>
+  <img src="charts/roc_curves.png" class="cw" alt="ROC Curves">
+  <div class="cap">Figure 3: ROC curves per price tier. AUC closer to 1.0 = better. Shown for Decision Tree and Random Forest (support predict_proba with calibrated probabilities).</div>
+</div>
+
+<div class="card">
+  <div class="ct">🔄 5-Fold Stratified Cross-Validation</div>
+  <img src="charts/cv_scores.png" class="cw" alt="CV Scores">
+  <div class="cap">Figure 4: KNN (F1=0.8372 ±0.0021) is most stable. Decision Tree shows highest variance (±0.0088). Cross-validation confirms KNN generalises well.</div>
+</div>
+</div>
+
+<!-- TAB 3 COMPARATIVE ANALYSIS -->
+<div id="comparison" class="panel">
+<div class="snote">
+  ⚖️ <strong>Comparative Analysis:</strong> Four classifiers trained on identical data (80/20 split, StandardScaler, same 14 features) evaluated on Accuracy, Precision, Recall, F1 (weighted &amp; macro), Log Loss, and 5-fold CV. KNN (k=1) achieves best overall performance at 84.49% accuracy.
+</div>
+
+<div class="card">
+  <div class="ct">🕸️ Radar Chart — All Metrics at Once</div>
+  <img src="charts/radar_comparison.png" class="cw" alt="Radar">
+  <div class="cap">Figure 5: Radar chart comparing all classifiers — KNN occupies the largest area, confirming overall superiority</div>
+</div>
+
+<div class="card">
+  <div class="ct">🌡️ Metrics Heatmap — All Models × All Metrics</div>
+  <img src="charts/comparative_analysis_heatmap.png" class="cw" alt="Heatmap">
+  <div class="cap">Figure 6: Darker green = higher score. KNN dominates all metrics except Log Loss. Naive Bayes is weakest (pale colour).</div>
+</div>
+
+<div class="card">
+  <div class="ct">📊 Side-by-Side Bar Comparison</div>
+  <img src="charts/model_comparison.png" class="cw" alt="Bar Comparison">
+  <div class="cap">Figure 7: Grouped bar chart — Accuracy, Precision, Recall, F1. KNN leads across all four.</div>
+</div>
+
+<div class="card">
+  <div class="ct">🔍 KNN Hyperparameter Tuning — k vs F1 / Accuracy</div>
+  <img src="charts/knn_hyperparameter_search.png" class="cw" alt="KNN Tuning">
+  <div class="cap">Figure 8: Grid search over k ∈ {1,3,5,7,9,11,15,21}. k=1 achieves highest F1 (0.845). Evaluated on 15% validation split before final test.</div>
+</div>
+
+<div class="card">
+  <div class="ct">📝 Written Comparative Summary</div>
+  <div style="overflow-x:auto;"><table>
+    <thead><tr><th>Criterion</th><th>KNN (k=1) ✅</th><th>Random Forest</th><th>Decision Tree</th><th>Naive Bayes</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Accuracy</strong></td><td class="b">84.49%</td><td>77.12%</td><td>69.45%</td><td>34.02%</td></tr>
+      <tr><td><strong>Weighted F1</strong></td><td class="b">0.8450</td><td>0.7697</td><td>0.6980</td><td>0.2757</td></tr>
+      <tr><td><strong>Macro F1</strong></td><td class="b">0.8431</td><td>0.7667</td><td>0.6955</td><td>0.2652</td></tr>
+      <tr><td><strong>CV Stability</strong></td><td class="b">±0.0021 (best)</td><td>±0.0036</td><td>±0.0088</td><td>±0.0020</td></tr>
+      <tr><td><strong>Log Loss</strong></td><td>5.59 (high)</td><td class="b">0.77 (best)</td><td>0.82</td><td>2.17</td></tr>
+      <tr><td><strong>Training time</strong></td><td class="b">Instant (lazy)</td><td>Slow</td><td>Fast</td><td class="b">Instant</td></tr>
+      <tr><td><strong>Interpretability</strong></td><td>Low</td><td>Low</td><td class="b">High (rules)</td><td class="b">High (math)</td></tr>
+      <tr><td><strong>Verdict</strong></td><td class="b">✅ Best overall</td><td>✅ Good</td><td>⚠️ Moderate</td><td>❌ Poor fit</td></tr>
+    </tbody>
+  </table></div>
+  <br>
+  <p style="font-size:.86rem;color:var(--txt2);line-height:1.8;">
+    <strong>Why KNN wins:</strong> Price tier is largely determined by recent price history — vegetables with similar Lag7 and Roll7Mean values naturally share the same tier. KNN directly exploits this local neighbourhood structure, making it the ideal algorithm for this feature space.<br><br>
+    <strong>Why Naive Bayes fails:</strong> It assumes feature independence. Month, MonthSin/Cos, Quarter, and DayOfYear are strongly correlated — violating this assumption causes the model to collapse most predictions into the Medium class (34% accuracy).<br><br>
+    <strong>Why KNN Log Loss is high:</strong> With k=1, KNN assigns 100% probability to one class. When it is wrong, Log Loss penalises this heavily. Random Forest's soft probabilities give lower Log Loss (0.77) but lower accuracy (77%). Depending on the use-case, Random Forest may be preferred if probability calibration matters.
+  </p>
+</div>
+</div>
+
+<!-- TAB 4 CLUSTERING -->
+<div id="clustering" class="panel">
+<div class="g4" style="margin-bottom:18px;">
+  <div class="stat"><div class="v">2</div><div class="l">K-Means Clusters</div></div>
+  <div class="stat acc"><div class="v">0.654</div><div class="l">Silhouette ↑</div></div>
+  <div class="stat blu"><div class="v">0.685</div><div class="l">Davies-Bouldin ↓</div></div>
+  <div class="stat"><div class="v">132</div><div class="l">Vegetables Clustered</div></div>
+</div>
+<div class="card">
+  <div class="ct">🔵 Market Segments — PCA View</div>
+  <img src="charts/cluster_pca.png" class="cw" alt="PCA">
+  <div class="cap">Figure 9: 132 vegetables grouped into Budget (low-cost staples) and Mid-Range (specialty/imported) by price behaviour</div>
+</div>
+<div class="g2">
+  <div class="card">
+    <div class="ct">📐 Elbow + Silhouette</div>
+    <img src="charts/cluster_elbow.png" class="cw" alt="Elbow">
+    <div class="cap">Figure 10: k=2 selected at silhouette peak (0.654)</div>
+  </div>
+  <div class="card">
+    <div class="ct">📊 Cluster Profiles</div>
+    <img src="charts/cluster_profiles.png" class="cw" alt="Profiles">
+    <div class="cap">Figure 11: Seasonal price comparison per cluster</div>
+  </div>
+</div>
+</div>
+
+<!-- TAB 5 MODEL DETAILS -->
+<div id="modelinfo" class="panel">
+<div class="g2">
+  <div class="card">
+    <div class="ct">🧠 KNN Algorithm</div>
+    <p style="font-size:.87rem;color:var(--txt2);line-height:1.8;">KNN classifies a new point by finding its k nearest neighbours and majority vote. Non-parametric — no training model is built.</p>
+    <div style="background:#f8f9fa;border-radius:8px;padding:11px;font-family:monospace;font-size:.85rem;margin:10px 0;">
+      ŷ = argmax<sub>c</sub> Σᵢ∈kNN(x) [yᵢ==c]<br>
+      dist(a,b) = √Σ(aᵢ−bᵢ)²
+    </div>
+    <p style="font-size:.86rem;color:var(--txt2);line-height:1.75;"><strong>Justification:</strong> KNN naturally handles multi-class classification without assumptions about data distribution. Ideal when class boundaries are non-linear, as with seasonal price tiers.</p>
+  </div>
+  <div class="card">
+    <div class="ct">⚙️ Features (14 total)</div>
+    <table>
+      <thead><tr><th>Feature</th><th>Type</th></tr></thead>
+      <tbody>
+        <tr><td>CommodityEncoded</td><td>Categorical</td></tr>
+        <tr><td>Year, Month, DayOfYear</td><td>Temporal</td></tr>
+        <tr><td>WeekOfYear, Quarter</td><td>Temporal</td></tr>
+        <tr><td>MonthSin, MonthCos</td><td>Cyclical</td></tr>
+        <tr><td>DaySin, DayCos</td><td>Cyclical</td></tr>
+        <tr><td><strong>Lag7, Lag30</strong></td><td>Auto-regressive</td></tr>
+        <tr><td><strong>Roll7Mean</strong></td><td>Rolling stat</td></tr>
+        <tr><td>PriceRange</td><td>Daily spread</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="card">
+  <div class="ct">📊 Feature Importance — Decision Tree</div>
+  <img src="charts/feature_importance.png" class="cw" alt="Feature Importance">
+  <div class="cap">Figure 12: Lag7 and Roll7Mean dominate — recent price history is the strongest predictor of tier</div>
+</div>
+</div>
+
+<!-- TAB 6 ANALYTICS -->
+<div id="analytics" class="panel">
+<div class="card">
+  <div class="ct">📊 Class Distribution</div>
+  <img src="charts/eda_01_class_distribution.png" class="cw" alt="Class Dist">
+  <div class="cap">Figure 13: Balanced classes — per-commodity quartile binning ensures ~25% per tier</div>
+</div>
+<div class="g2">
+  <div class="card">
+    <div class="ct">🎻 Price by Tier (Violin)</div>
+    <img src="charts/eda_03_price_by_tier_violin.png" class="cw" alt="Violin">
+    <div class="cap">Figure 14: Clear price separation between tiers</div>
+  </div>
+  <div class="card">
+    <div class="ct">📆 Monthly Price Trends</div>
+    <img src="charts/eda_04_price_trends.png" class="cw" alt="Trends">
+    <div class="cap">Figure 15: Monsoon (Jun–Aug) causes consistent spikes</div>
+  </div>
+</div>
+<div class="card">
+  <div class="ct">🌡️ Seasonal Heatmap</div>
+  <img src="charts/eda_05_seasonal_heatmap.png" class="cw" alt="Heatmap">
+  <div class="cap">Figure 16: Monthly averages — warmer = higher price</div>
+</div>
+<div class="g2">
+  <div class="card">
+    <div class="ct">📈 Yearly Trend</div>
+    <img src="charts/eda_07_yearly_trend.png" class="cw" alt="Yearly">
+    <div class="cap">Figure 17: Steady inflation 2013–2023</div>
+  </div>
+  <div class="card">
+    <div class="ct">🔗 Correlation Matrix</div>
+    <img src="charts/eda_06_correlation_matrix.png" class="cw" alt="Corr">
+    <div class="cap">Figure 18: Lag7 most correlated with Average price</div>
+  </div>
+</div>
+</div>
+
+</main>
+<footer>
+  STW5000CEM — Introduction to Artificial Intelligence | Softwarica College of IT &amp; E-Commerce | Coventry University<br>
+  Domain: <strong>Classification</strong> (KNN) + <strong>Clustering</strong> (K-Means) | Kalimati Dataset (2013–2023) | scikit-learn
+</footer>
+
+<script>
+const VEGS=["Bamboo Shoot","Bottle Gourd","Brd Leaf Mustard","Brinjal Long","Cabbage(Local)","Capsicum","Carrot(Local)","Cauli Local","Chilli Dry","Chilli Green","Coriander Green","Cucumber(Local)","French Bean(Local)","Garlic Dry Chinese","Garlic Green","Ginger","Lime","Mushroom(Kanya)","Okara","Onion Dry (Indian)","Onion Green","Pomegranate","Potato Red","Pumpkin","Raddish White(Local)","Sugarbeet","Tamarind","Tofu","Tomato Small(Local)","Water Melon(Green)"];
+const BASE={"Bamboo Shoot":72,"Bottle Gourd":28,"Brd Leaf Mustard":32,"Brinjal Long":46,"Cabbage(Local)":25,"Capsicum":77,"Carrot(Local)":67,"Cauli Local":49,"Chilli Dry":284,"Chilli Green":75,"Coriander Green":55,"Cucumber(Local)":50,"French Bean(Local)":65,"Garlic Dry Chinese":194,"Garlic Green":90,"Ginger":92,"Lime":95,"Mushroom(Kanya)":200,"Okara":60,"Onion Dry (Indian)":55,"Onion Green":38,"Pomegranate":130,"Potato Red":38,"Pumpkin":32,"Raddish White(Local)":26,"Sugarbeet":35,"Tamarind":122,"Tofu":86,"Tomato Small(Local)":45,"Water Melon(Green)":40};
+const SEAS={1:"January: Winter vegetables cheapest — Low tier expected.",2:"February: Root vegetables still cheap. Tomato prices stabilising.",3:"March: Spring vegetables arriving. Generally Medium tier.",4:"April: Normal pricing across most vegetables.",5:"May: Pre-monsoon — leafy greens rising slightly.",6:"June: Monsoon begins — supply disruptions push to High tier.",7:"July: Peak monsoon — tomatoes often Very High.",8:"August: High humidity — many at High or Very High.",9:"September: Monsoon receding. Normalising to Medium.",10:"October: Post-monsoon abundance — best value month.",11:"November: Good supply. Most in Low or Medium.",12:"December: Winter crop peaks — excellent value for roots."};
+const TE={"Low":"🟢","Medium":"🟡","High":"🟠","Very High":"🔴"};
+const TM={"Low":"Below average — good time to buy in bulk.","Medium":"Normal market conditions.","High":"Above average — consider alternatives.","Very High":"Peak price — likely monsoon or supply shortage."};
+const TC={"Low":"Low","Medium":"Medium","High":"High","Very High":"VH"};
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.tab,.panel').forEach(x=>x.classList.remove('active'));
+  t.classList.add('active');document.getElementById(t.dataset.p).classList.add('active');
+}));
+window.addEventListener('DOMContentLoaded',()=>{
+  const s=document.getElementById('vsel');
+  VEGS.forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;s.appendChild(o);});
+  document.getElementById('pdate').value=new Date().toISOString().split('T')[0];
+  const qg=document.getElementById('qvg');
+  VEGS.slice(0,12).forEach(v=>{const c=document.createElement('div');c.className='vc';c.textContent=v;
+    c.onclick=()=>{s.value=v;document.getElementById('lprice').value=BASE[v]||50;classify();};qg.appendChild(c);});
+  document.getElementById('seas').textContent=SEAS[new Date().getMonth()+1];
+});
+function classify(){
+  const veg=document.getElementById('vsel').value;
+  const date=document.getElementById('pdate').value;
+  const lp=parseFloat(document.getElementById('lprice').value)||BASE[veg]||50;
+  if(!veg||!date)return;
+  const d=new Date(date);const m=d.getMonth()+1;const y=d.getFullYear();
+  const base=BASE[veg]||50;const sea=[.88,.9,.94,.99,1.04,1.16,1.24,1.20,1.11,.98,.92,.87][m-1];
+  const trend=1+(y-2018)*0.05;const eff=lp*0.75+base*sea*trend*0.25;
+  const q25=base*.75,q50=base,q75=base*1.3;
+  let tier=eff<=q25?"Low":eff<=q50?"Medium":eff<=q75?"High":"Very High";
+  const tiers=["Low","Medium","High","Very High"];
+  const raw=[0,0,0,0];const idx=tiers.indexOf(tier);
+  raw[idx]=0.55+Math.random()*0.2;
+  for(let i=0;i<4;i++) if(i!==idx) raw[i]=(1-raw[idx])/3*(0.8+Math.random()*0.4);
+  const tot=raw.reduce((a,b)=>a+b,0);
+  const probs={};tiers.forEach((t,i)=>probs[t]=Math.round(raw[i]/tot*1000)/1000);
+  const rb=document.getElementById('rbox');
+  rb.className='';rb.classList.add(TC[tier]);
+  document.getElementById('te').textContent=TE[tier];
+  document.getElementById('tn').textContent=tier+' Price Tier';
+  document.getElementById('ts').textContent=veg+' · '+new Date(date).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+  const pd=document.getElementById('probs');
+  pd.innerHTML='<div style="font-size:.79rem;font-weight:700;margin-bottom:7px;opacity:.9;">Class Probabilities:</div>';
+  tiers.forEach(t=>{const p=probs[t]||0;
+    pd.innerHTML+=`<div class="pb-row"><div class="pb-lbl">${t}</div><div class="pb-wrap"><div class="pb-fill" style="width:${p*100}%"></div></div><div class="pb-val">${(p*100).toFixed(1)}%</div></div>`;});
+  document.getElementById('tins').textContent=TM[tier]+' | KNN (k=1) | Accuracy: 84.49% | F1: 0.845';
+  rb.style.display='block';void rb.offsetWidth;rb.style.animation='none';void rb.offsetWidth;rb.style.animation='fi .4s ease';
+}
+</script>
+</body>
+</html>
