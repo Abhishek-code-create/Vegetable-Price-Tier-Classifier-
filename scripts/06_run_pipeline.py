@@ -1,11 +1,4 @@
-"""
-=============================================================================
-STW5000CEM — Introduction to Artificial Intelligence
-Script 06: Full Pipeline Runner — Run Everything With One Command
-=============================================================================
-Run : python scripts/06_run_pipeline.py
-=============================================================================
-"""
+
 
 import subprocess, sys, os, time
 
@@ -27,7 +20,7 @@ for script, label in STEPS:
     t = time.time()
     r = subprocess.run([sys.executable, script], capture_output=False)
     if r.returncode != 0:
-        print(f"\n  ❌ FAILED: {label}")
+        print(f"\n   FAILED: {label}")
         sys.exit(1)
     print(f"\n  ✅ Done  ({time.time()-t:.1f}s)")
 
