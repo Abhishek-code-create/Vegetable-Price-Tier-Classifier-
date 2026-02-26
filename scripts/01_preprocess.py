@@ -1,17 +1,4 @@
-"""
-=============================================================================
-STW5000CEM — Introduction to Artificial Intelligence
-Script 01: Data Preprocessing Pipeline
-=============================================================================
-Domain    : CLASSIFICATION — Predict vegetable price tier (Low/Medium/High/Very High)
-Algorithm : K-Nearest Neighbours (KNN) + Decision Tree + Naive Bayes
-Dataset   : Kalimati Tarkari Dataset (280,862 records, 2013–2023)
-Author    : [Your Name / Student ID]
-Run       : python scripts/01_preprocess.py
-Output    : data/clean/kalimati_clean.csv
-            data/clean/kalimati_model.csv
-=============================================================================
-"""
+
 
 import os
 import numpy as np
