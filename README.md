@@ -83,43 +83,7 @@ python scripts/05_cli.py --vegetable "Cauli Local" --date 2024-06-01 --price 45
 
 ---
 
-## 🤖 AI Algorithms
 
-### Primary: K-Nearest Neighbours (KNN) — Classification
-- **Domain:** Classification
-- **Task:** Predict vegetable price tier (Low / Medium / High / Very High)
-- **k selected:** 1 (via grid search over {1,3,5,7,9,11,15,21})
-- **Distance metric:** Euclidean
-- **Accuracy:** 84.49% | **F1 Score:** 0.845 | **CV F1:** 0.8372 ± 0.0021
-
-### Secondary: K-Means Clustering
-- **Domain:** Clustering
-- **Task:** Discover natural vegetable market segments by price behaviour
-- **k selected:** 2 (via Elbow + Silhouette method)
-- **Silhouette Score:** 0.654 | **Davies-Bouldin:** 0.685
-
----
-
-## 📊 Classification Results
-
-| Model | Accuracy | F1 Score | CV F1 | Domain |
-|-------|---------|---------|-------|--------|
-| **KNN (k=1)** | **84.49%** | **0.845** | **0.837** | Classification ✅ |
-| Random Forest | 77.12% | 0.770 | 0.767 | Classification ✅ |
-| Decision Tree | 69.45% | 0.698 | 0.700 | Classification ✅ |
-| Naive Bayes | 34.02% | 0.276 | 0.274 | Classification ✅ |
-
----
-
-## 🏛️ Custom Classes
-
-| Class | Purpose |
-|-------|---------|
-| `VegetableDataset` | Wraps dataset with typed properties for features/labels |
-| `PriceTierClassifier` | Encapsulates training, scaling, evaluation, saving |
-| `ModelComparator` | Orchestrates multi-model training and comparison |
-| `KNNHyperparameterSearch` | Custom grid search over k values |
-| `VegetableCluster` | K-Means clustering with PCA visualisation |
 
 ---
 
@@ -145,4 +109,4 @@ python scripts/05_cli.py --vegetable "Cauli Local" --date 2024-06-01 --price 45
 
 ---
 
-*STW5000CEM | Softwarica College of IT & E-Commerce | In collaboration with Coventry University*
+
